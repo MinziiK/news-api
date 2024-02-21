@@ -1,12 +1,13 @@
 let news = [];
+const url1 = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`;
+const url2 = `https://super-quokka-748388.netlify.app/top-headlines?country=kr`;
+
 
 const getLatestNews = async ()=>{
-    const url = new URL(
-        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`
-        ); 
-    console.log("uuu", url);
+    const requestUrl = new URL(url2); 
+    console.log("uuu", requestUrl);
 
-    const response = await fetch(url);    // url 호출 함수 : fetch
+    const response = await fetch(requestUrl);
     const data = await response.json();
     news = data.articles;
 
