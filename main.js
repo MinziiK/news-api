@@ -1,6 +1,8 @@
 let news = [];
+let apiKey = `139b94f02a174a238f83c71018505bab`;
+const newsUrl = `https://newsapi.org/v2/everything?country=kr&apiKey=${apiKey}`     // newsapi
 const url1 = `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines`;
-const url2 = `https://super-quokka-748388.netlify.app/top-headlines?country=kr`;
+const url2 = `https://super-quokka-748388.netlify.app/top-headlines?country=kr`;    //netlify domain
 
 
 const getLatestNews = async ()=>{
