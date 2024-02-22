@@ -39,3 +39,19 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+.search{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-align: right;
+}
+
+#search-button{
+    border: none;
+    border-radius: 7px;
+}
+
+#search-input{
+    border: 1px solid grey;
+    border-radius: 7px;
+}
