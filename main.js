@@ -9,10 +9,12 @@ const url2 = `https://super-quokka-748388.netlify.app/top-headlines?country=kr`;
 menus.forEach(menu=>menu.addEventListener("click", (e)=>fetchNews({ category: e.target.textContent.toLowerCase() })))
 
 // 검색
-document.getElementById("search-button").addEventListener("click", () => {
-    const keyword = document.getElementById("search-input").value;
-    fetchNews({ keyword });
-});
+document.getElementById("search-button").addEventListener("click", 
+                                                                    ()=>{
+                                                                        const keyword = document.getElementById("search-input").value;
+                                                                        fetchNews({ keyword });
+                                                                    }
+                                                            );
 
 // getLatestNews, getNewsByCategory, getNewsByKeyword func Assemble!!
 async function fetchNews({category='',keyword=''} = {}){
@@ -20,11 +22,24 @@ async function fetchNews({category='',keyword=''} = {}){
     if(category) baseurl += `&category=${category}`;
     if(keyword) baseurl += `&q=${keyword}`;
 
-    const response = await fetch(baseurl);
-    const data = await response.json();
-    
-    newsList = data.articles;
-    render();
+    try{
+        const response = await fetch(baseurl);
+        const data = await response.json();
+        if(response.status === 200){
+            if(data.articles.length===0){
+                throw new Error("No result for this search");
+            }
+            newsList = data.articles;
+            render();
+        }
+        else{
+            throw new Error(data.message);
+        }
+        
+    }
+    catch(error){
+        errorRender(error.message);
+    }
 }
 
 const render = ()=>{ 
@@ -55,6 +70,13 @@ const render = ()=>{
 
     
     document.getElementById('news-board').innerHTML = newsHTML;
+}
+
+const errorRender = (errorMessage)=>{
+    const errorHTML = `<div class="alert alert-danger" role="alert">
+                        ${errorMessage}
+                    </div>`
+    document.getElementById("news-board").innerHTML = errorHTML;
 }
 
 fetchNews();
