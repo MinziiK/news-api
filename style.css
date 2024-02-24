@@ -63,3 +63,9 @@
 .alert{
     text-align: center;
 }
+
+.pagination{
+    margin-top: 7px;
+    display: flex;
+    justify-content: center;
+}

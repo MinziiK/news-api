@@ -22,7 +22,7 @@ document.getElementById("search-button").addEventListener("click",
 
 // getLatestNews, getNewsByCategory, getNewsByKeyword func Assemble!!
 async function fetchNews({category='',keyword=''} = {}){
-    let baseurl = url2;
+    let baseurl = new URL(url2);
     if(category) baseurl += `&category=${category}`;
     if(keyword) baseurl += `&q=${keyword}`;
 
